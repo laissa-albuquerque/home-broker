@@ -2,6 +2,7 @@ package com.unifacisa.tap.homebroker.service;
 
 import com.unifacisa.tap.homebroker.entity.Acao;
 import com.unifacisa.tap.homebroker.repository.AcaoRepository;
+import com.unifacisa.tap.homebroker.service.scheduling.SchedulerConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -14,17 +15,21 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class AcaoService {
 
     @Autowired
     private AcaoRepository acaoRepository;
+    //private static final Logger log = (Logger) LoggerFactory.getLogger(SchedulerConfig.class);
 
     public JSONArray buscarAcoesDoSite() {
         try {
